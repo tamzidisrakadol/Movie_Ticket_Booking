@@ -2,6 +2,9 @@ package com.example.Movie_Ticket_booking.Model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 //have to add role 
 @Entity
@@ -16,8 +19,11 @@ public class UserModel {
     String password;
     String phoneNumber;
     String imgUrl;
-
     String role;
+
+    @OneToMany
+    List<TicketModal> ticketList= new ArrayList<>();
+
 
     public UserModel() {
     }
