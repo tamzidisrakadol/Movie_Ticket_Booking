@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-//have to add role 
 @Entity
 @Table(name = "UserInfo")
 public class UserModel {
@@ -21,7 +20,7 @@ public class UserModel {
     String imgUrl;
     String role;
 
-    @OneToMany
+    @OneToMany(mappedBy = "userModel")
     List<TicketModal> ticketList= new ArrayList<>();
 
 
@@ -101,5 +100,13 @@ public class UserModel {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public List<TicketModal> getTicketList() {
+        return ticketList;
+    }
+
+    public void setTicketList(List<TicketModal> ticketList) {
+        this.ticketList = ticketList;
     }
 }

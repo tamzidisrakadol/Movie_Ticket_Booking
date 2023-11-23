@@ -15,7 +15,13 @@ public class TicketModal {
     String date;
     String payment;
 
-    @OneToMany
+    @ManyToOne
+    UserModel userModel;
+
+    @ManyToOne
+    MovieModel movieModel;
+
+    @OneToMany(mappedBy = "ticketModal")
     List<SeatModal> seatList;
 
     public TicketModal() {
@@ -58,5 +64,29 @@ public class TicketModal {
 
     public void setPayment(String payment) {
         this.payment = payment;
+    }
+
+    public UserModel getUserModel() {
+        return userModel;
+    }
+
+    public void setUserModel(UserModel userModel) {
+        this.userModel = userModel;
+    }
+
+    public List<SeatModal> getSeatList() {
+        return seatList;
+    }
+
+    public void setSeatList(List<SeatModal> seatList) {
+        this.seatList = seatList;
+    }
+
+    public MovieModel getMovieModel() {
+        return movieModel;
+    }
+
+    public void setMovieModel(MovieModel movieModel) {
+        this.movieModel = movieModel;
     }
 }

@@ -4,22 +4,25 @@ package com.example.Movie_Ticket_booking.Model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Table_info")
+@Table(name = "Seat_info")
 public class SeatModal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    int row;
-    char column;
+    int seatRow;
+    char seatColumn;
     Boolean isBooked;
+
+    @ManyToOne
+    TicketModal ticketModal;
 
     public SeatModal() {
     }
 
-    public SeatModal(int id, int row, char column, Boolean isBooked) {
+    public SeatModal(int id, int seatRow, char column, Boolean isBooked) {
         this.id = id;
-        this.row = row;
-        this.column = column;
+        this.seatRow = seatRow;
+        this.seatColumn = column;
         this.isBooked = isBooked;
     }
 
@@ -31,20 +34,20 @@ public class SeatModal {
         this.id = id;
     }
 
-    public int getRow() {
-        return row;
+    public int getSeatRow() {
+        return seatRow;
     }
 
-    public void setRow(int row) {
-        this.row = row;
+    public void setSeatRow(int seatRow) {
+        this.seatRow = seatRow;
     }
 
-    public char getColumn() {
-        return column;
+    public char getSeatColumn() {
+        return seatColumn;
     }
 
-    public void setColumn(char column) {
-        this.column = column;
+    public void setSeatColumn(char seatColumn) {
+        this.seatColumn = seatColumn;
     }
 
     public Boolean getBooked() {
@@ -53,5 +56,13 @@ public class SeatModal {
 
     public void setBooked(Boolean booked) {
         isBooked = booked;
+    }
+
+    public TicketModal getTicketModal() {
+        return ticketModal;
+    }
+
+    public void setTicketModal(TicketModal ticketModal) {
+        this.ticketModal = ticketModal;
     }
 }

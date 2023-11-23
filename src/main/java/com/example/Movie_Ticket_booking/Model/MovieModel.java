@@ -18,7 +18,7 @@ public class MovieModel {
     String directorName;
     String category;
     List<String> imgUrl = new ArrayList<>();
-    @OneToMany
+    @OneToMany(mappedBy = "movieModel")
     List<TicketModal> ticketList = new ArrayList<>();
 
     public MovieModel(int id, String name, String description, String rating, int releaseYear, String directorName, String category, List<String> imgUrl) {
@@ -97,5 +97,13 @@ public class MovieModel {
 
     public void setImgUrl(List<String> imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public List<TicketModal> getTicketList() {
+        return ticketList;
+    }
+
+    public void setTicketList(List<TicketModal> ticketList) {
+        this.ticketList = ticketList;
     }
 }
