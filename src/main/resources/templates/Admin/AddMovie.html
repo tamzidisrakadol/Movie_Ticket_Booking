@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <section>
+        <div class="addEmployeeContainer">
+
+            <div class="card w-75 mx-auto shadow">
+                <div class="card-body">
+
+                    <form id="updateEmpForm" method="post" enctype="multipart/form-data" th:action="@{/admin/addMovieToDb}">
+
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="rectangle-employeecontainer">
+                                        <h2>Add Movie Info</h2>
+                                        <hr class="solid">
+
+                                        <div class="form-group">
+                                            <label for="MovieName">Movie Name</label>
+
+                                            <input type="text" name="name"  class="form-control" id="MovieName" th:value="${movieModel.name}"
+                                                placeholder="Ex: DeadPool">
+                                        </div>
+
+                                        <div class="form-group">
+
+                                            <label for="directorName">Director Name</label>
+                                            <input type="text" name="directorName" class="form-control" th:value="${movieModel.directorName}"
+                                                id="directorName">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="Category">Category</label>
+                                            <input type="text" name="category" th:value="${movieModel.category}" class="form-control" id="Category">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="rating">Rating</label>
+                                            <input type="text" name="rating" th:value="${movieModel.rating}" class="form-control" id="rating">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="releaseYear">Release Year</label>
+                                            <input type="number" name="releaseYear" th:value="${movieModel.releaseYear}" class="form-control"
+                                                id="releaseYear">
+                                        </div>
+
+                                        <div class="form-group mt-3">
+                                            <textarea placeholder="Enter description" name="description" th:value="${movieModel.description}"
+                                                id="description" class="form-control" rows="3"></textarea>
+                                        </div>
+
+
+                                        <div class="container text-center">
+                                            <button type="submit" class="btn bg-primary text-white">
+                                                Submit
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="rectangle-employeecontainer">
+                                        <h2>Add Image</h2>
+                                        <hr class="solid">
+                                        <!--upload Image-->
+
+                                        <div class="form-group mt-3">
+                                            <label for="formFileMultiple" class="form-label">Multiple Images
+                                                Select</label>
+                                            <input class="form-control" name="movieImg" type="file" id="formFileMultiple" multiple>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</body>
+
+</html>

@@ -13,8 +13,8 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public String registerUser(@RequestBody UserModel userModel)throws IOException {
+    public String registerUser(@RequestBody UserModel userModel){
         userRepository.save(userModel);
-        return "Success";
+        return "success";
     }
 }
