@@ -4,10 +4,12 @@ package com.example.Movie_Ticket_booking.Controller;
 import com.example.Movie_Ticket_booking.Model.UserModel;
 import com.example.Movie_Ticket_booking.Service.UserService;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -39,8 +41,12 @@ public class UserController {
     }
 
     @PostMapping("/signUp")
-    public String userSignUp(@ModelAttribute("user")UserModel userModel, @RequestParam MultipartFile img, HttpSession session) throws IOException {
-        userModel.setRole("Role_User");
+    public String userSignUp(@Valid @ModelAttribute("user")UserModel userModel, @RequestParam MultipartFile img, HttpSession session, BindingResult bindingResult) throws IOException {
+        if (bindingResult.hasErrors()){
+            System.out.println(bindingResult);
+            return "RegisterPage";
+        }
+        userModel.setRole("ROLE_USER");
         userModel.setImgUrl(img.getOriginalFilename());
         String result = userService.registerUser(userModel);
         if (result!=null){
@@ -48,9 +54,7 @@ public class UserController {
             Path path = Paths.get(savefile.getAbsolutePath()+File.separator+img.getOriginalFilename());
             Files.copy(img.getInputStream(),path, StandardCopyOption.REPLACE_EXISTING);
         }
-
         session.setAttribute("msg","Register Successfully");
-
         return "redirect:/movieuser/userRegister";
     }
 

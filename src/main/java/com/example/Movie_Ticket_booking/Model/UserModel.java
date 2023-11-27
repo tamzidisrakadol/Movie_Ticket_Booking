@@ -1,6 +1,7 @@
 package com.example.Movie_Ticket_booking.Model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,16 +13,21 @@ public class UserModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
+    @NotBlank(message = "first Name cannot be blank")
     String fName;
+    @NotBlank(message = "last Name cannot be blank")
     String lName;
+    @NotBlank(message = "Email Address cannot be blank")
+    @Column(unique = true)
     String emailAddress;
+    @NotBlank(message = "Password cannot be blank")
     String password;
+    @NotBlank(message = "PhoneNumber cannot be blank")
     String phoneNumber;
     String imgUrl;
     String role;
-
     @OneToMany(mappedBy = "userModel")
-    List<TicketModal> ticketList= new ArrayList<>();
+    List<TicketModal> ticketList = new ArrayList<>();
 
 
     public UserModel() {
