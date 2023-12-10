@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,6 +27,9 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @GetMapping("/welcome")
     public String firstPage(Model model){
@@ -48,6 +52,7 @@ public class UserController {
         }
         userModel.setRole("ROLE_USER");
         userModel.setImgUrl(img.getOriginalFilename());
+        userModel.setPassword(bCryptPasswordEncoder.encode(userModel.getPassword()));
         String result = userService.registerUser(userModel);
         if (result!=null){
             File savefile = new ClassPathResource("static/images").getFile();

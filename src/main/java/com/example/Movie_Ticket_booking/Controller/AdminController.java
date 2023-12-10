@@ -27,8 +27,6 @@ public class AdminController {
     @Autowired
     AdminService adminService;
 
-    @Autowired
-    MovieRepository movieRepository;
 
 
     @GetMapping("/addMovie")
